@@ -1,4 +1,4 @@
-# Instalar las librerias
+# Instalar las librerías
  ```bash
 pip install -r requirements.txt
 ```
