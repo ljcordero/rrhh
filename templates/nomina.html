@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/nomina.css') }}"
+/>
+{% endblock %} {% block contenido %}
+<div id="contenido" class="container">
+  <h1 id="titulo" class="container-title">Nómina</h1>
+  <button class="btn no-imprimir" onclick="imprimir()">Imprimir</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th rowspan="2">Empleado</th>
+        <th rowspan="2">Salario Bruto</th>
+        <th colspan="4">Deducciones pagadas por la empresa</th>
+        <th colspan="3">Deducciones pagadas por el empleado</th>
+        <th rowspan="2">Salario Neto</th>
+      </tr>
+      <tr>
+        <th>Seguro familiar de salud</th>
+        <th>Seguro de vejez, discapacidad y sobrevivencia</th>
+        <th>Seguro de riesgos laborales</th>
+        <th>INFOTEP</th>
+        <th>Seguro familiar de salud</th>
+        <th>Seguro de vejez, discapacidad y sobrevivencia</th>
+        <th>Impuesto sobre la renta</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for empleado in empleados %}
+      <tr>
+        <td>{{ empleado.nombre }} {{ empleado.apellido }}</td>
+        <td>{{ empleado.salario | dinero }}</td>
+        <td>{{ empleado.salario | ars_empresa | dinero }}</td>
+        <td>{{ empleado.salario | afp_empresa | dinero }}</td>
+        <td>{{ empleado.salario | riesgos_laborales | dinero }}</td>
+        <td>{{ empleado.salario | infotep | dinero }}</td>
+        <td>{{ empleado.salario | ars_empleado | dinero }}</td>
+        <td>{{ empleado.salario | afp_empleado | dinero }}</td>
+        <td>{{ empleado.salario | isr | dinero }}</td>
+        <td>{{ empleado.salario | salario_neto | dinero }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %} {% block extra_js %}
+<script src="{{ url_for('static', filename='js/nomina.js') }}"></script>
+{% endblock %}

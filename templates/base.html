@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Recursos Humanos</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base.css') }}"
+    />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" />
+    {% block extra_css %} {% endblock %}
+  </head>
+  <body>
+    {% if 'usuario_id' in session %}
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-links">
+          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+          <a href="{{ url_for('usuarios') }}">Usuarios</a>
+          <a href="{{ url_for('empleados') }}">Empleados</a>
+          <a href="{{ url_for('departamentos') }}">Departamentos</a>
+          <a href="{{ url_for('puestos') }}">Puestos</a>
+          <a href="{{ url_for('nomina') }}">Generar Nómina</a>
+          <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+        </div>
+        <!-- Mobile -->
+        <div class="navbar-toggle" id="navbar-toggle">
+          <span class="navbar-icon"></span>
+          <span class="navbar-icon"></span>
+          <span class="navbar-icon"></span>
+        </div>
+      </div>
+    </nav>
+    {% endif %}
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alerta alerta-{{category}}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      {% block contenido %}{% endblock %}
+    </main>
+    <footer>
+      <p>Luis Joel Hernandez Cordero - 100058777</p>
+    </footer>
+  </body>
+</html>
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+{% block extra_js %} {% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Crear Usuario</h1>
+  <form method="POST">
+    <input type="text" name="usuario" placeholder="Usuario" required />
+    <input type="password" name="password" placeholder="Contraseña" required />
+    <input class="btn btn-submit" type="submit" value="Crear" />
+  </form>
+</div>
+{% endblock %}

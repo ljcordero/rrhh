@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Crear Departamento</h1>
+  <form method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required />
+    <select title="Supervisor" name="supervisor_id">
+      <option value="">Sin Supervisor</option>
+      {% for empleado in empleados %}
+      <option value="{{ empleado.id }}">
+        {{ empleado.nombre }} {{ empleado.apellido }} > {{ empleado.puesto.nombre }}
+      </option>
+      {% endfor %}
+    </select>
+    <input class="btn btn-submit" type="submit" value="Crear" />
+  </form>
+</div>
+{% endblock %}

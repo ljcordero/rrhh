@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Puestos</h1>
+  <a href="{{ url_for('crear_puesto') }}" class="btn">Crear Puesto</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Salario Mínimo</th>
+        <th>Salario Máximo</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for puesto in puestos %}
+      <tr>
+        <td>{{ puesto.nombre }}</td>
+        <td>{{ puesto.salario_minimo | dinero }}</td>
+        <td>{{ puesto.salario_maximo | dinero }}</td>
+        <td>
+          <a href="{{ url_for('actualizar_puesto', id=puesto.id) }}" class="btn"
+            >Editar</a
+          >
+          <a
+            href="{{ url_for('eliminar_puesto', id=puesto.id) }}"
+            class="btn btn-danger"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

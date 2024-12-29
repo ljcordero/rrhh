@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Empleados</h1>
+  <a href="{{ url_for('crear_empleado') }}" class="btn">Crear Empleado</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre Completo</th>
+        <th>Puesto</th>
+        <th>Departamento</th>
+        <th>Salario</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for empleado in empleados %}
+      <tr>
+        <td>{{ empleado.nombre }} {{ empleado.apellido }}</td>
+        <td>{{ empleado.puesto.nombre }}</td>
+        <td>{{ empleado.departamento.nombre }}</td>
+        <td>{{ empleado.salario | dinero }}</td>
+        <td>
+          <a
+            href="{{ url_for('actualizar_empleado', id=empleado.id) }}"
+            class="btn"
+            >Editar</a
+          >
+          <a
+            href="{{ url_for('eliminar_empleado', id=empleado.id) }}"
+            class="btn btn-danger"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Crear Puesto</h1>
+  <form method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required />
+    <input
+      type="number"
+      name="salario_minimo"
+      placeholder="Salario Minimo"
+      min="0"
+      required
+    />
+    <input
+      type="number"
+      name="salario_maximo"
+      placeholder="Salario Maximo"
+      min="0"
+      required
+    />
+    <input class="btn btn-submit" type="submit" value="Crear" />
+  </form>
+</div>
+{% endblock %}

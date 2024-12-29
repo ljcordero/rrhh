@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Usuarios</h1>
+  <a href="{{ url_for('crear_usuario') }}" class="btn">Crear Usuario</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for usuario in usuarios %}
+      <tr>
+        <td>{{ usuario.usuario }}</td>
+        <td>
+          <a
+            href="{{ url_for('actualizar_usuario', id=usuario.id) }}"
+            class="btn"
+            >Editar</a
+          >
+          <a
+            href="{{ url_for('eliminar_usuario', id=usuario.id) }}"
+            class="btn btn-danger"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

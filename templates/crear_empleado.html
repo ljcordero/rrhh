@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/empleado.css') }}"
+/>
+{% endblock %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Crear Empleado</h1>
+  <form method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required />
+    <input type="text" name="apellido" placeholder="Apellido" required />
+
+    <label for="fecha_nacimiento">Fecha de nacimiento</label>
+    <input
+      type="date"
+      name="fecha_nacimiento"
+      placeholder="Fecha de nacimiento"
+      required
+    />
+    <label for="fecha_contratacion">Fecha de contratación</label>
+    <input
+      type="date"
+      name="fecha_contratacion"
+      placeholder="Fecha de contratación"
+      required
+    />
+
+    <label for="sexo">Sexo</label>
+    <select title="sexo" name="sexo" required>
+      <option value="H">Hombre</option>
+      <option value="M">Mujer</option>
+    </select>
+
+    <label for="puesto_id">Puesto</label>
+    <select id="puesto" title="Puesto" name="puesto_id" required>
+      {% for puesto in puestos %}
+      <option
+        data-salario-minimo="{{ puesto.salario_minimo }}"
+        data-salario-maximo="{{ puesto.salario_maximo }}"
+        value="{{ puesto.id }}"
+      >
+        {{ puesto.nombre }}
+      </option>
+      {% endfor %}
+    </select>
+
+    <label for="departamento_id">Departamento</label>
+    <select title="Departamento" name="departamento_id" required>
+      {% for departamento in departamentos %}
+      <option value="{{ departamento.id }}">{{ departamento.nombre }}</option>
+      {% endfor %}
+    </select>
+
+    <input
+      type="number"
+      id="salario"
+      name="salario"
+      placeholder="Salario"
+      required
+    />
+
+    <input class="btn btn-submit" type="submit" value="Crear" />
+  </form>
+</div>
+{% endblock %} {% block extra_js %}
+<script src="{{ url_for('static', filename='js/empleado.js') }}"></script>
+{% endblock %}

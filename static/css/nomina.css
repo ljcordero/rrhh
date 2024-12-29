@@ -1,0 +1,19 @@
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th {
+  text-align: center !important;
+}
+
+@media print {
+  .no-imprimir {
+    display: none;
+  }
+
+  .container {
+    flex: 1;
+    padding: 20px 0;
+  }
+}

@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Departamentos</h1>
+  <a href="{{ url_for('crear_departamento') }}" class="btn"
+    >Crear Departamento</a
+  >
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Supervisor</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for departamento in departamentos %}
+      <tr>
+        <td>{{ departamento.nombre }}</td>
+        <td>
+          {% if departamento.supervisor %}
+            {{ departamento.supervisor.nombre }} {{ departamento.supervisor.apellido }}
+          {% else %}
+            Sin supervisor
+          {% endif %}
+        </td>
+        <td>
+          <a href="{{ url_for('actualizar_departamento', id=departamento.id) }}" class="btn"
+            >Editar</a
+          >
+          <a
+            href="{{ url_for('eliminar_departamento', id=departamento.id) }}"
+            class="btn btn-danger"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

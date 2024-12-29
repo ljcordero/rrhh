@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Actualizar Puesto</h1>
+  <form method="POST">
+    <input type="text" name="nombre" value="{{ puesto.nombre }}" required />
+    <input
+      type="number"
+      name="salario_minimo"
+      value="{{ puesto.salario_minimo }}"
+      min="0"
+      required
+    />
+    <input
+      type="number"
+      name="salario_maximo"
+      value="{{ puesto.salario_maximo }}"
+      min="0"
+      required
+    />
+    <input class="btn btn-submit" type="submit" value="Actualizar" />
+  </form>
+</div>
+{% endblock %}

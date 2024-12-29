@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/dashboard.css') }}"
+/>
+{% endblock %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Dashboard</h1>
+  <div class="row">
+    <div class="card">
+      <h3 class="card-title">Cantidad de empleados contratados</h3>
+      <p class="card-value">{{ cantidad_empleados }}</p>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Cantidad de departamentos</h3>
+      <p class="card-value">{{ cantidad_departamentos }}</p>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Cantidad de puestos de trabajo</h3>
+      <p class="card-value">{{ cantidad_puestos }}</p>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Costo total de la nómina de los empleados</h3>
+      <p class="card-value">{{ costo_total | dinero }}</p>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Departamentos con mayor nómina</h3>
+      <ol class="card-list">
+        {% for departamento, costo in departamentos_con_mayor_nomina %}
+        <li>
+          {{ departamento }}: {{ costo | dinero }}
+        </li>
+        {% else %}
+          <p>-</p>
+        {% endfor %}
+      </ol>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Puesto de trabajo con más empleados</h3>
+      <p class="card-value">
+        {% if puesto_con_mas_empleados %}
+          {{ puesto_con_mas_empleados[0] }}
+          <br/>
+          ({{ puesto_con_mas_empleados[1] }} empleados)
+        {% else %}
+          <p>-</p>
+        {% endif %}
+      </p>
+    </div>
+    <div></div>
+    {% endblock %}
+  </div>
+</div>

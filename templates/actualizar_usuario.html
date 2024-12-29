@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block contenido %}
+<div class="container">
+  <h1 class="container-title">Actualizar Usuario</h1>
+  <form method="POST">
+    <input type="text" name="usuario" value="{{ usuario.usuario }}" required />
+    <input
+      type="password"
+      name="password"
+      placeholder="Nueva contraseña (dejar en blanco para mantener la misma)"
+    />
+    <input class="btn btn-submit" type="submit" value="Actualizar" />
+  </form>
+</div>
+{% endblock %}
