@@ -77,7 +77,6 @@ main {
   flex: 1;
   width: 100%;
   max-width: 1200px;
-  overflow-x: hidden;
 }
 
 .container {

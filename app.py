@@ -235,6 +235,7 @@ def actualizar_puesto(id):
 @login_requerido
 def eliminar_puesto(id):
   puesto = Puestos.query.get_or_404(id)
+  Empleados.query.filter_by(puesto_id=id).delete()
   db.session.delete(puesto)
   flash('Puesto eliminado', 'exito')
   return redirect(url_for('puestos'))
@@ -244,7 +245,6 @@ def eliminar_puesto(id):
 @login_requerido
 def departamentos():
   departamentos = Departamentos.query.all()
-  print(departamentos[0].supervisor)
   return render_template('departamentos.html', departamentos=departamentos)
 
 @app.route('/departamentos/crear', methods=['GET', 'POST'])
@@ -279,6 +279,7 @@ def actualizar_departamento(id):
 @login_requerido
 def eliminar_departamento(id):
   departamento = Departamentos.query.get_or_404(id)
+  Empleados.query.filter_by(departamento_id=id).delete()
   db.session.delete(departamento)
   db.session.commit()
   flash('Departamento eliminado', 'exito')
